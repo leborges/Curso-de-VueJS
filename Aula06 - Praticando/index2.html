@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vue.js"></script>
+    <title>Curso VueJS</title>
+</head>
+<body>
+    
+    <div id="app">
+        <!-- COMPORTAMENTO PADRÃO -->
+        <a 
+            href="https://www.google.com"
+            target="_blank"
+            @click="prevenirComp()">
+                Padrão: Site Google
+        </a>
+        <hr>
+        <a 
+            href="https://www.google.com"
+            target="_blank"
+            @click.once="prevenirComp($event)">
+            <!-- OU @click.prevent> -->
+                Prevents Once: Site Google
+        </a>
+        <hr>
+        <a 
+            href="https://www.google.com"
+            target="_blank"
+            @click="prevenirComp($event)">
+            <!-- OU @click.prevent.once> -->
+                Prevents: Site Google
+        </a>
+        <hr>
+        <form @submit.once="prevenirComp($event)">
+            <p>Formulário</p>
+            <button type="Submit">Enviar</button>
+        </form>
+        <hr>
+        <p>
+            Texto: <input type="text" @keyup.Shift.Enter="capturandoTeclas($event)">
+            <!-- @keyup.a só vai executar o evento quando a tecla A for clicada -->
+            <!-- @keyup.Shift.Enter executa somente quando clicado ambos ao mesmo tempo,
+            isso são modificadores encadeados -->
+        </p>
+        <hr>
+        <p>Teclas: {{ teclas }}</p>
+        <p>Mensagem: {{ msg }}</p>
+        <p>Qtde cliques: {{ cliques }}</p>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '',
+                teclas: '',
+                cliques: 0
+            },
+            methods: {
+                prevenirCompPadrao() {
+                    this.msg = 'Comportamento padrão ativado.';
+                    this.cliques++;
+                },
+                prevenirComp(e) {
+                    e.preventDefault(); // Previni o comportamento padrão do link
+                    this.msg = 'Comportamento padrão prevenido.';
+                    this.cliques++;
+                },
+                capturandoTeclas(e) {
+                    console.log(e.key);
+                    this.teclas += e.key;
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

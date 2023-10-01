@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vue.js"></script>
+    <title>Curso de VueJS</title>
+</head>
+<body>
+    
+    <div id="app">
+        
+        <input type="text" @keyup="imprimirTexto(bool, 'Passando parâmetros', 251)">
+        <input type="button" value="Alerta!" @click="mensagemAlert($event)">
+
+    </div>
+
+
+    <script>
+        
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                bool: true
+            },
+            methods: {
+                imprimirTexto(b, t, i) {
+                    console.log('Passado por parametro ' + b);    
+                    console.log('Pegado através do this ' + !this.bool); 
+                },
+                mensagemAlert(e) {
+                    // alert('Mesagem de alerta!');
+                    console.log(e);
+                }
+            }
+        });
+        
+    </script>
+
+</body>
+</html>

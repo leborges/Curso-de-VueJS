@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vue.js"></script>
+    <title>Curso de VueJS</title>
+    <style>
+
+        #app {
+            display: block;
+            margin: auto;
+        }
+        
+        .div-principal {}
+        
+        .div-comum {
+            display: inline-block;
+            width: 26%;
+            text-align: center;
+        }
+        
+        .borda {
+            border: 1px solid black;
+        }
+        
+        .margem {
+            margin: 5px;
+            padding: 5px;
+        }
+
+        .verde {
+            background-color: green;
+            color: whitesmoke;
+        }
+        
+        .branco {
+            background-color: whitesmoke;
+            color: green;
+        }
+        
+        .azul {
+            background-color: blue;
+            color: white;
+        }
+        
+        .vermelho {
+            background-color: red;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div id="app">
+
+        <div class="margem borda div-principal" :class="cor">
+            Cor: {{ cor }} <br>
+            Posição do mouse <br>
+            X: {{ pos.x }} | Y: {{ pos.y }}
+        </div>
+
+        <div 
+            class="margem borda div-comum" 
+            @click="mudarCor('verde')" 
+            @mouseover="mudarCor('azul')" 
+            @mouseout="mudarCor('vermelho')">
+            VERDE
+        </div>
+
+        <div class="margem borda div-comum" @click="mudarCor('branco')">
+            BRANCO
+        </div>
+        
+        <div class="margem borda div-comum" @mousemove="coordenadas($event)">
+            MOVIMENTAÇÃO
+        </div>
+
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                cor: '',
+                pos: {
+                    x: 0,
+                    y: 0
+                }
+            },
+            methods: {
+                mudarCor(c) {
+                    this.cor = c;
+                },
+                coordenadas(e) {
+                    this.pos.x = e.clientX;
+                    this.pos.y = e.clientY;
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

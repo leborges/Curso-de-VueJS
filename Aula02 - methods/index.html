@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vue.js"></script>
+    <title>Curso de VueJS</title>
+</head>
+<body>
+    
+    <div id="app">
+
+        {{ somar() }} <br>
+        {{ subtrair() }} <br>
+        {{ multiplicar() }} <br>
+        {{ dividir() }} <br>
+        {{ numeroAleatorio() }} <br>
+
+    </div>
+
+    <script>
+        
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                n1: 10,
+                n2: 3
+            },
+            methods: {
+                somar: function somar() { // Função normal
+                    return this.n1 + this.n2;
+                },
+                subtrair: function() { // Função anônima
+                    return this.n1 - this.n2;
+                },
+                multiplicar: () => { // Arrow function
+                    return this.n1 * this.n2; 
+                    // ERRO: Arrow function e a forma que ela lida com o contexto léxico do 'this' faz com que ela não exergue esses atribuitos instanciados no escopo do objeto Vue.
+                    // Realizando um console.log(this) podemos ver que ela faz uma referência ao escopo global e não ao nosso escopo do objeto Vue, diferente das demais funções.
+                    // A menos quando ela for declarada dentro de outra função que está no escopo do objeto Vue, um exemplo seria declarar dentro do somar() uma arrow function.
+                },
+                dividir() { // Forma enxuta, ele entende que a função terá o mesmo nome que a chave, como fizemos no exemplo de função normal.
+                    return this.n1 / this.n2;
+                },
+                numeroAleatorio: function numeroAleatorio() {
+                    return parseInt((Math.random()*10)+1);
+                }
+            }
+        }); // vm → Vue Model
+
+    </script>
+</body>
+</html>

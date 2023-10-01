@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vue.js"></script>
+    <title>Curso de VueJS</title>
+</head>
+<body>
+    
+    <div id="app">
+        Mensagem: {{ mensagem }} <br>
+        Valor total: {{ valorTotal }}<br>
+        Hobbies: {{ hobbies[0] }} <br>
+        Logado: {{ logado }} <br>
+        Perfil: {{ perfil.nome }}, {{ perfil.idade }} anos. <br>
+        Cursos: <br>
+        - {{ perfil.cursos[0].nome }} <br>
+        - {{ perfil.cursos[1].nome }} <br>
+    </div>
+
+    <script>
+        
+        const vm = new Vue({
+            el: '#app', // el → Elemento : ID(#) / Class(.)
+            data: { // data → variaveis internas da DIV
+                mensagem: 'Primeiro template controlado por Vue',
+                valorTotal: 150.27,
+                logado: false,
+                hobbies: [
+                    'Academia',
+                    'Caminhar',
+                    'Comer fora'
+                ],
+                perfil: {
+                    nome: 'Leonardo Borges',
+                    idade: 23,
+                    cursos: [
+                        {
+                            nome: 'VueJS',
+                            cargaHoraria: 40,
+                            temCertificado: true,
+                            url: 'https://www.udemy.com.br'
+                        },
+                        {
+                            nome: 'HTML5 / CSS3',
+                            cargaHoraria: 45,
+                            temCertificado: true,
+                            url: 'https://www.cursoemvideo.com'
+                        }
+                    ]
+                }
+            }
+        }); // vm → Vue Model
+
+    </script>
+</body>
+</html>

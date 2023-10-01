@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vue.js"></script>
+    <title>Curso de VueJS</title>
+    <style>
+
+        .vermelho {
+            color: red;
+        }
+
+        .negrito {
+            font-weight: bold;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div id="app">
+        
+        <a href="www.udemy.com.br" :href="site" target="_blank">Site</a>
+        <p class="negrito" :class="cor">Entendo a diretiva</p>
+        <input type="text" :placeholder="preenchimento">
+        <input type="checkbox" :checked="check">
+
+    </div>
+
+    <script>
+        
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                site: 'https://www.google.com',
+                cor: 'vermelho',
+                preenchimento: 'Insira seu nome',
+                check: true
+            },
+            methods: {}
+        }); // vm → Vue Model
+
+    </script>
+</body>
+</html>

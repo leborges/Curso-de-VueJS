@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vue.js"></script>
+    <title>Condicionais - v-if</title>
+</head>
+<body>
+     <div id="app">
+        <!-- Diretiva v-if - Método simples -->
+        <button @click="exibirSaldo = !exibirSaldo">
+            <span v-if="!exibirSaldo">Exibir saldo</span>
+            <span v-if="exibirSaldo">Ocultar saldo</span>
+        </button> <!-- TOGGLE -->
+        <p>Saldo: <span v-if="exibirSaldo">R$ {{ saldo }}</span></p>
+        <hr>
+        <!-- Diretiva v-if e v-else -->
+        <p>Idade: <input type="number" id="inputIdade" @blur="setIdade()"></p>
+        <p v-if="idade < 18">{{ idade }} - Menor de idade</p>
+        <p v-else>{{ idade }} - Maior de idade</p>
+        <hr>
+        <!-- Diretiva v-if / v-else-if / v-else -->
+        <p>Nota final: <input type="number" id="inputNota" @blur="setNota()"></p>
+        <p v-if="nota >= 0 && nota <= 3">Reprovado</p>
+        <p v-else-if="nota >=4 && nota <= 6">Em recuperação</p>
+        <p v-else-if="nota >= 7 && nota <= 10">Aprovado</p>
+        <p v-else>Nota informada é inválida</p>
+     </div>
+     <script>
+        const vm = new Vue ({
+            el: '#app',
+            data: {
+                saldo: 4570.17,
+                exibirSaldo: true,
+                idade: 0,
+                nota: 0
+            },
+            methods: {
+                setIdade() {
+                    this.idade = inputIdade.value;
+                },
+                setNota() {
+                    this.nota = inputNota.value;
+                }
+            }
+        });
+     </script>
+</body>
+</html>

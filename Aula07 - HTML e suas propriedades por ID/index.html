@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vue.js"></script>
+    <title>Elementos filhos</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" id="inputTexto">
+        <br>
+        <select id="opcoes">
+            <option value="A">Value 1</option>
+            <option value="B">Value 2</option>
+            <option value="C">Value 3</option>
+        </select>
+        <p id="paragrafo" style="color: red">Paragrafo</p>
+        <div id="bloco">Conteúdo interno da div</div>
+        <hr>
+        <button @click="SelecionarElementoFilho()">Capturar</button>
+    </div>
+    <script>
+        const vm = new Vue ({
+            el: '#app',
+            data: {},
+            methods: {
+                SelecionarElementoFilho() {
+                    // console.log(inputTexto.type);
+                    // console.log(inputTexto.value);
+                    // console.log(opcoes.value);
+                    // console.log(paragrafo.style.color);
+                    // console.log(paragrafo.innerHTML);
+                    console.log(bloco.innerHTML);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vue.js"></script>
+    <title>Hands On - Parte 2</title>
+</head>
+<body>
+    <div id="app">
+        <p><a href="https://www.fishtv.com" target="_blank" @click="prevenirComportamentoPadrao($event)">1.1) Prevenir Comportamento</a></p>
+        <p><a href="https://www.fishtv.com" target="_blank" @click.prevent>1.2) Prevenir Comportamento</a></p>
+        <p><a href="https://www.fishtv.com" target="_blank" @click.prevent.once>2) Prevenir Comportamento 1x</a></p>
+        <p><a href="https://www.fishtv.com" target="_blank">Não Prevenir Comportamento</a></p>
+        <p><button @click.prevent.once="clicks()">Contador com Prevent Once</button></p>
+        <p><button @click.prevent="clicks()">Contador com Prevent</button></p>
+        <p><button @click.once="clicks()">Contador com Once</button></p>
+        <p><button @click="clicks()">Contador sem nada</button></p>
+        
+        <hr>
+        
+        <p><button @click="resetClicks()">Reset cliques</button></p>
+        <p>Cliques - Prevenir Comportamento: {{ clicksPrevent }}</p>
+        
+        <hr>
+        
+        <form @submit.once="prevenirUmaVez()">
+            <legend>FORM - Prevenir uma vez</legend>
+            <p>{{ formulario }}</p>
+            <button type="submit">Enviar form</button>
+        </form>
+
+        <hr>
+
+        <input type="text" @keyup="capturandoTecla($event)" placeholder="Digite sua mensagem">
+        
+        <!-- Com esse evento de keyup.x abaixo, ele só será executado quando a tecla pressionada for X -->
+        <!-- <input type="text" @keyup.x="capturandoTecla($event)" placeholder="Pressione X"> -->
+        
+        <!-- Com esse evento de keyup.Shift.Enter abaixo, ele só será executado quando as teclas forem pressionadas em conjunto Shift Enter  -->
+        <input type="text" @keyup.Shift.Enter="capturandoTecla($event)" placeholder="Pressione Shift + Enter">
+        <p>{{ mensagem }}</p>
+    </div>
+    <script>
+        const vm = new Vue ({
+            el: '#app',
+            data: {
+                clicksPrevent: 0,
+                formulario: '',
+                mensagem: ''
+            },
+            methods: {
+                resetClicks() {
+                    this.clicksPrevent = 0
+                },
+                clicks() {
+                    this.clicksPrevent++;
+                },
+                // O método abaixo preveni o comportamento que seria padrão do link, fazendo com que ele não redirecione para nenhum lugar
+                prevenirComportamentoPadrao(e) {
+                    this.clicks();
+                    e.preventDefault();
+                },
+                prevenirUmaVez(e) {
+                    this.formulario = 'Enviado';
+                },
+                capturandoTecla(e) {
+                    this.mensagem += e.key;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

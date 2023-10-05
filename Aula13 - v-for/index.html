@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../vue.js"></script>
+    <title>Diretiva - v-for</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="curso in cursos">{{ curso }}</li>
+            <hr>
+            <li v-for="curso in cursos" v-text="curso"></li>
+            <hr>
+            <li v-for="curso, key in cursos">{{ key + 1 }} - {{ curso }}</li>
+            <hr>
+            <li v-for="(curso, key) in cursos" v-text="key + 1 +' - '+ curso"></li>
+        </ul>
+    </div>
+    <script>
+        const vm = new Vue ({
+            el: '#app',
+            data: {
+                cursos: ['Laravel', 'Web completo', 'Solid', 'Banco de dados', 'Angular']
+            },
+            methods: {}
+        });
+    </script>
+</body>
+</html>
